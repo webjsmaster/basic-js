@@ -38,24 +38,24 @@ class VigenereCipheringMachine {
 		key = key.toUpperCase()
 
 		let abcCount = supportingValue.length
-		let result = []
-		let position = 0
-		let kf = Math.ceil(message.length / key.length)
-		key = key.repeat(kf)
+		let res = []
+		let pos = 0
+		let kof = Math.ceil(message.length / key.length)
+		key = key.repeat(kof)
 
 		for (let i = 0; i < message.length; i++) {
 			if (supportingValue.indexOf(message[i]) >= 0) {
 				let letter = message[i]
-				let shift = key[position]
+				let shift = key[pos]
 
-				result.push(supportingValue.charAt((supportingValue.indexOf(letter) + supportingValue.indexOf(shift)) % abcCount))
-				position++
+				res.push(supportingValue.charAt((supportingValue.indexOf(letter) + supportingValue.indexOf(shift)) % abcCount))
+				pos++
 			} else {
-				result.push(message[i])
+				res.push(message[i])
 			}
 		}
 
-		return this.direction ? result.join('') : result.reverse().join('')
+		return this.direction ? res.join('') : res.reverse().join('')
 	}
 
 	decrypt(message, key) {
@@ -67,24 +67,24 @@ class VigenereCipheringMachine {
 		key = key.toUpperCase()
 
 		let abcCount = supportingValue.length
-		let result = []
-		let position = 0
-		let kf = Math.ceil(message.length / key.length)
-		key = key.repeat(kf)
+		let res = []
+		let pos = 0
+		let kof = Math.ceil(message.length / key.length)
+		key = key.repeat(kof)
 
 		for (let i = 0; i < message.length; i++) {
 			if (supportingValue.indexOf(message[i]) >= 0) {
 				let letter = message[i]
-				let shift = key[position]
+				let shift = key[pos]
 
-				result.push(supportingValue.charAt((supportingValue.indexOf(letter) + abcCount - supportingValue.indexOf(shift)) % abcCount))
-				position++
+				res.push(supportingValue.charAt((supportingValue.indexOf(letter) + abcCount - supportingValue.indexOf(shift)) % abcCount))
+				pos++
 			} else {
-				result.push(message[i])
+				res.push(message[i])
 			}
 		}
 
-		return this.direction ? result.join('') : result.reverse().join('')
+		return this.direction ? res.join('') : res.reverse().join('')
 	}
 }
 
